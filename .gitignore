@@ -1,0 +1,10 @@
+# Build output
+hello
+*.o
+*.dSYM/
+
+# Editor
+.vscode/
+
+# macOS
+.DS_Store
