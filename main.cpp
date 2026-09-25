@@ -1,3 +1,4 @@
+#include "game.hpp"
 #include <raylib.h>
 
 int main() {
@@ -9,9 +10,14 @@ int main() {
     InitWindow(SCREENWIDTH, SCREENHEIGHT, "Scape Invaders");
     SetTargetFPS(60);
 
+    Game game;
+
     while (WindowShouldClose() == false) {
         BeginDrawing();
         ClearBackground(grey);
+
+        game.Draw();
+        game.HandleInput();
 
         EndDrawing();
     }
