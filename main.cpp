@@ -13,11 +13,12 @@ int main() {
     Game game;
 
     while (WindowShouldClose() == false) {
+        game.HandleInput();
+        game.Update();
         BeginDrawing();
         ClearBackground(grey);
 
         game.Draw();
-        game.HandleInput();
 
         EndDrawing();
     }

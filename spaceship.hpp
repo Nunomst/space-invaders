@@ -1,5 +1,7 @@
 #pragma once
+#include "laser.hpp"
 #include "raylib.h"
+#include <vector>
 
 class Spaceship {
   public:
@@ -9,8 +11,10 @@ class Spaceship {
     void MoveLeft();
     void MoveRight();
     void FireLase();
+    std::vector<Laser> lasers;
 
   private:
     Texture2D image;
     Vector2 position;
+    double lastFireTime;
 };
