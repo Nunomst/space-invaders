@@ -6,6 +6,18 @@ Game::~Game() {}
 
 void Game::Draw() {
     spaceship.Draw();
+
+    for (auto& laser : spaceship.lasers) {
+        laser.Draw();
+    }
+}
+
+void Game::Update() {
+    for (auto& laser : spaceship.lasers) {
+        laser.Update();
+    }
+
+    DeleteInactiveLasers();
 }
 
 void Game::HandleInput() {
@@ -13,5 +25,17 @@ void Game::HandleInput() {
         spaceship.MoveLeft();
     } else if (IsKeyDown(KEY_RIGHT)) {
         spaceship.MoveRight();
+    } else if (IsKeyDown(KEY_SPACE)) {
+        spaceship.FireLase();
+    }
+}
+
+void Game::DeleteInactiveLasers() {
+    for (auto it = spaceship.lasers.begin(); it != spaceship.lasers.end();) {
+        if (!it->isActive) {
+            spaceship.lasers.erase(it);
+        } else {
+            ++it;
+        }
     }
 }
