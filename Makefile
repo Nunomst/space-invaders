@@ -1,10 +1,10 @@
 CXX      = clang++
 CXXFLAGS = -std=c++17 -Wall -I/opt/homebrew/include
 LDFLAGS  = -L/opt/homebrew/lib -lraylib
-TARGET   = hello
+TARGET   = space-invaders
 
-SRCS     = $(wildcard *.cpp)
-HEADERS  = $(wildcard *.h)
+SRCS     = $(wildcard src/*.cpp)
+HEADERS  = $(wildcard src/*.hpp)
 
 $(TARGET): $(SRCS) $(HEADERS)
 	$(CXX) $(CXXFLAGS) $(SRCS) $(LDFLAGS) -o $(TARGET)
