@@ -28,7 +28,9 @@ void Alien::Draw() {
     DrawTextureV(alienImages[type - 1], position, WHITE);
 }
 
-void Alien::Update() {}
+void Alien::Update(int direction) {
+    position.x += direction;
+}
 
 int Alien::GetType() {
     return type;

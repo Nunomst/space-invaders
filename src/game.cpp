@@ -3,6 +3,7 @@
 Game::Game() {
     obstacles = CreateObstacles();
     aliens = CreateAliens();
+    aliensDirection = 1;
 }
 
 Game::~Game() {
@@ -29,6 +30,8 @@ void Game::Update() {
     for (auto& laser : spaceship.lasers) {
         laser.Update();
     }
+
+    MoveAliens();
 
     DeleteInactiveLasers();
 }
@@ -91,4 +94,25 @@ std::vector<Alien> Game::CreateAliens() {
         }
     }
     return aliens;
+}
+
+void Game::MoveAliens() {
+    for (auto& alien : aliens) {
+        if (alien.position.x + alien.alienImages[alien.type - 1].width > GetScreenWidth()) {
+            aliensDirection = -1;
+            MoveDownAliens(4);
+        }
+        if (alien.position.x < 0) {
+            aliensDirection = 1;
+            MoveDownAliens(4);
+        }
+
+        alien.Update(aliensDirection);
+    }
+}
+
+void Game::MoveDownAliens(int distance) {
+    for (auto& alien : aliens) {
+        alien.position.y += distance;
+    }
 }
