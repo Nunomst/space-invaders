@@ -2,6 +2,7 @@
 
 Game::Game() {
     obstacles = CreateObstacles();
+    aliens = CreateAliens();
 }
 
 Game::~Game() {}
@@ -15,6 +16,10 @@ void Game::Draw() {
 
     for (auto& obstacle : obstacles) {
         obstacle.Draw();
+    }
+
+    for (auto& alien : aliens) {
+        alien.Draw();
     }
 }
 
@@ -56,4 +61,22 @@ std::vector<Obstacle> Game::CreateObstacles() {
     }
 
     return obstacles;
+}
+
+std::vector<Alien> Game::CreateAliens() {
+    int NUMBER_OF_ROWS = 5;
+    int NUMBER_OF_COLUMNS = 11;
+    int CELL_SIZE = 55;
+
+    std::vector<Alien> aliens;
+
+    for (int row = 0; row < NUMBER_OF_ROWS; row++) {
+        for (int column = 0; column < NUMBER_OF_COLUMNS; column++) {
+            float x = column * CELL_SIZE;
+            float y = row * CELL_SIZE;
+
+            aliens.push_back(Alien(1, {x, y}));
+        }
+    }
+    return aliens;
 }
