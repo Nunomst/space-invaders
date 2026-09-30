@@ -5,7 +5,9 @@ Game::Game() {
     aliens = CreateAliens();
 }
 
-Game::~Game() {}
+Game::~Game() {
+    Alien::UnloadImages();
+}
 
 void Game::Draw() {
     spaceship.Draw();
@@ -67,15 +69,25 @@ std::vector<Alien> Game::CreateAliens() {
     int NUMBER_OF_ROWS = 5;
     int NUMBER_OF_COLUMNS = 11;
     int CELL_SIZE = 55;
+    int X_OFFSET = 75;
+    int Y_OFFSET = 110;
 
     std::vector<Alien> aliens;
 
     for (int row = 0; row < NUMBER_OF_ROWS; row++) {
         for (int column = 0; column < NUMBER_OF_COLUMNS; column++) {
-            float x = column * CELL_SIZE;
-            float y = row * CELL_SIZE;
+            int alienType;
+            if (row == 0) {
+                alienType = 3;
+            } else if (row == 1 || row == 2) {
+                alienType = 2;
+            } else {
+                alienType = 1;
+            }
 
-            aliens.push_back(Alien(1, {x, y}));
+            float x = X_OFFSET + column * CELL_SIZE;
+            float y = Y_OFFSET + row * CELL_SIZE;
+            aliens.push_back(Alien(alienType, {x, y}));
         }
     }
     return aliens;
