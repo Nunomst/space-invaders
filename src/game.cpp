@@ -84,7 +84,7 @@ void Game::DeleteInactiveLasers() {
 
     for (auto it = alienLasers.begin(); it != alienLasers.end();) {
         if (!it->isActive) {
-            alienLasers.erase(it);
+            it = alienLasers.erase(it);
         } else {
             ++it;
         }
@@ -174,7 +174,6 @@ void Game::CheckForCollisions() {
             if (CheckCollisionRecs(it->getRect(), laser.getRect())) {
                 it = aliens.erase(it);
                 laser.isActive = false;
-                break;
             } else {
                 it++;
             }
@@ -186,7 +185,6 @@ void Game::CheckForCollisions() {
                 if (CheckCollisionRecs(it->getRect(), laser.getRect())) {
                     it = obstacle.blocks.erase(it);
                     laser.isActive = false;
-                    break;
                 } else {
                     it++;
                 }
@@ -212,7 +210,6 @@ void Game::CheckForCollisions() {
                 if (CheckCollisionRecs(it->getRect(), laser.getRect())) {
                     it = obstacle.blocks.erase(it);
                     laser.isActive = false;
-                    break;
                 } else {
                     it++;
                 }
