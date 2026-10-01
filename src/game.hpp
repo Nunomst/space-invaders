@@ -1,5 +1,6 @@
 #pragma once
 #include "alien.hpp"
+#include "mysteryship.hpp"
 #include "obstacle.hpp"
 #include "spaceship.hpp"
 #include <vector>
@@ -26,4 +27,7 @@ class Game {
     std::vector<Laser> alienLasers;
     constexpr static float alienLaserShootInterval = 0.35;
     float timeLastAlienFired;
+    Mysteryship mysteryship;
+    float mysteryShipSpawnInterval;
+    float timeLastSpawn;
 };
