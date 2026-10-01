@@ -2,7 +2,7 @@
 
 Mysteryship::Mysteryship() {
     image = LoadTexture("graphics/mystery.png");
-    alive = false;
+    isVisible = false;
 }
 
 Mysteryship::~Mysteryship() {
@@ -10,16 +10,16 @@ Mysteryship::~Mysteryship() {
 }
 
 void Mysteryship::Update() {
-    if (alive) {
+    if (isVisible) {
         position.x += speed;
         if (position.x > GetScreenWidth() - image.width || position.x < 0) {
-            alive = false;
+            isVisible = false;
         }
     }
 }
 
 void Mysteryship::Draw() {
-    if (alive) {
+    if (isVisible) {
         DrawTextureV(image, position, WHITE);
     }
 }
@@ -35,5 +35,13 @@ void Mysteryship::Spawn() {
         position.x = GetScreenWidth() - image.width;
         speed = -3;
     }
-    alive = true;
+    isVisible = true;
+}
+
+Rectangle Mysteryship::getRect() {
+    if (isVisible) {
+        return {position.x, position.y, float(image.width), float(image.height)};
+    } else {
+        return {position.x, position.y, 0, 0};
+    }
 }

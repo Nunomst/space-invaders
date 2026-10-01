@@ -10,7 +10,8 @@ class Spaceship {
     void Draw();
     void MoveLeft();
     void MoveRight();
-    void FireLase();
+    void FireLaser();
+    Rectangle getRect();
     std::vector<Laser> lasers;
 
   private:
