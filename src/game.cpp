@@ -2,12 +2,8 @@
 #include <iostream>
 
 Game::Game() {
-    obstacles = CreateObstacles();
-    aliens = CreateAliens();
-    aliensDirection = 1;
-    timeLastAlienFired = 0.0;
-    timeLastSpawn = 0.0;
-    mysteryShipSpawnInterval = GetRandomValue(10, 20);
+
+    InitGame();
 }
 
 Game::~Game() {
@@ -38,38 +34,44 @@ void Game::Draw() {
 
 void Game::Update() {
 
-    double currentTime = GetTime();
-    if (currentTime - timeLastSpawn > mysteryShipSpawnInterval) {
-        mysteryship.Spawn();
-        timeLastSpawn = GetTime();
-        mysteryShipSpawnInterval = GetRandomValue(10, 20);
+    if (run) {
+        double currentTime = GetTime();
+        if (currentTime - timeLastSpawn > mysteryShipSpawnInterval) {
+            mysteryship.Spawn();
+            timeLastSpawn = GetTime();
+            mysteryShipSpawnInterval = GetRandomValue(10, 20);
+        }
+
+        for (auto& laser : spaceship.lasers) {
+            laser.Update();
+        }
+
+        MoveAliens();
+
+        AlienShootLaser();
+
+        for (auto& alienLaser : alienLasers) {
+            alienLaser.Update();
+        }
+
+        CheckForCollisions();
+        DeleteInactiveLasers();
+
+        mysteryship.Update();
     }
-
-    for (auto& laser : spaceship.lasers) {
-        laser.Update();
-    }
-
-    MoveAliens();
-
-    AlienShootLaser();
-
-    for (auto& alienLaser : alienLasers) {
-        alienLaser.Update();
-    }
-
-    CheckForCollisions();
-    DeleteInactiveLasers();
-
-    mysteryship.Update();
 }
 
 void Game::HandleInput() {
-    if (IsKeyDown(KEY_LEFT)) {
-        spaceship.MoveLeft();
-    } else if (IsKeyDown(KEY_RIGHT)) {
-        spaceship.MoveRight();
-    } else if (IsKeyDown(KEY_SPACE)) {
-        spaceship.FireLaser();
+    if (run) {
+        if (IsKeyDown(KEY_LEFT)) {
+            spaceship.MoveLeft();
+        } else if (IsKeyDown(KEY_RIGHT)) {
+            spaceship.MoveRight();
+        } else if (IsKeyDown(KEY_SPACE)) {
+            spaceship.FireLaser();
+        }
+    } else if (IsKeyDown(KEY_ENTER)) {
+        Reset();
     }
 }
 
@@ -97,7 +99,7 @@ std::vector<Obstacle> Game::CreateObstacles() {
 
     for (int i = 0; i < 4; i++) {
         float offsetX = (i + 1) * gap + i * obstacleWidth;
-        obstacles.push_back(Obstacle({offsetX, float(GetScreenHeight() - 100)}));
+        obstacles.push_back(Obstacle({offsetX, float(GetScreenHeight() - 200)}));
     }
 
     return obstacles;
@@ -133,11 +135,11 @@ std::vector<Alien> Game::CreateAliens() {
 
 void Game::MoveAliens() {
     for (auto& alien : aliens) {
-        if (alien.position.x + alien.alienImages[alien.type - 1].width > GetScreenWidth()) {
+        if (alien.position.x + alien.alienImages[alien.type - 1].width > GetScreenWidth() - 25) {
             aliensDirection = -1;
             MoveDownAliens(4);
         }
-        if (alien.position.x < 0) {
+        if (alien.position.x < 25) {
             aliensDirection = 1;
             MoveDownAliens(4);
         }
@@ -201,7 +203,10 @@ void Game::CheckForCollisions() {
     for (auto& laser : alienLasers) {
         if (CheckCollisionRecs(laser.getRect(), spaceship.getRect())) {
             laser.isActive = false;
-            std::cout << "SPACESHIP HIT" << std::endl;
+            lives--;
+            if (lives == 0) {
+                GameOver();
+            }
         }
 
         for (auto& obstacle : obstacles) {
@@ -231,7 +236,30 @@ void Game::CheckForCollisions() {
         }
 
         if (CheckCollisionRecs(alien.getRect(), spaceship.getRect())) {
-            std::cout << "SPACESHIP HIT BY ALIEN" << std::endl;
+            GameOver();
         }
     }
+}
+
+void Game::GameOver() {
+    run = false;
+}
+
+void Game::Reset() {
+    spaceship.Reset();
+    aliens.clear();
+    alienLasers.clear();
+    obstacles.clear();
+    InitGame();
+}
+
+void Game::InitGame() {
+    obstacles = CreateObstacles();
+    aliens = CreateAliens();
+    aliensDirection = 1;
+    timeLastAlienFired = 0.0;
+    timeLastSpawn = 0.0;
+    mysteryShipSpawnInterval = GetRandomValue(10, 20);
+    lives = 3;
+    run = true;
 }

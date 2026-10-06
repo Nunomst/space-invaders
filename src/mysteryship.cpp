@@ -12,7 +12,7 @@ Mysteryship::~Mysteryship() {
 void Mysteryship::Update() {
     if (isVisible) {
         position.x += speed;
-        if (position.x > GetScreenWidth() - image.width || position.x < 0) {
+        if (position.x > GetScreenWidth() - image.width - 25 || position.x < 25) {
             isVisible = false;
         }
     }
@@ -29,10 +29,10 @@ void Mysteryship::Spawn() {
     int side = GetRandomValue(0, 1);
 
     if (side == 0) {
-        position.x = 0;
+        position.x = 25;
         speed = 3;
     } else {
-        position.x = GetScreenWidth() - image.width;
+        position.x = GetScreenWidth() - image.width - 25;
         speed = -3;
     }
     isVisible = true;
