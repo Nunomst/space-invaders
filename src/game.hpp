@@ -13,6 +13,7 @@ class Game {
     void Update();
     void HandleInput();
     bool run;
+    int lives;
 
   private:
     void DeleteInactiveLasers();
@@ -35,5 +36,4 @@ class Game {
     Mysteryship mysteryship;
     float mysteryShipSpawnInterval;
     float timeLastSpawn;
-    int lives;
 };

@@ -10,6 +10,11 @@ int main() {
     const int SCREENHEIGHT = 700;
 
     InitWindow(SCREENWIDTH + offset, SCREENHEIGHT + (offset * 2), "Scape Invaders");
+
+    Font font = LoadFontEx("font/monogram.ttf", 64, 0, 0);
+
+    Texture2D spaceshipImage = LoadTexture("graphics/spaceship.png");
+
     SetTargetFPS(60);
 
     Game game;
@@ -22,6 +27,18 @@ int main() {
 
         DrawRectangleRoundedLinesEx({10, 10, 780, 780}, 0.18f, 20, 2, yellow);
         DrawLineEx({25, 730}, {775, 730}, 3, yellow);
+
+        if (game.run) {
+            DrawTextEx(font, "LEVEL 01", {570, 740}, 34, 2, yellow);
+        } else {
+            DrawTextEx(font, "GAME OVER", {570, 740}, 34, 2, yellow);
+        }
+
+        float x = 50.0;
+        for (int i = 0; i < game.lives; i++) {
+            DrawTextureV(spaceshipImage, {x, 740}, WHITE);
+            x += 50;
+        }
 
         game.Draw();
 
