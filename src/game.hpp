@@ -16,6 +16,7 @@ class Game {
     int lives;
     int score;
     int highscore;
+    Music music;
 
   private:
     void DeleteInactiveLasers();
@@ -41,4 +42,5 @@ class Game {
     Mysteryship mysteryship;
     float mysteryShipSpawnInterval;
     float timeLastSpawn;
+    Sound explosionSound;
 };

@@ -17,6 +17,7 @@ int main() {
     const int SCREENHEIGHT = 700;
 
     InitWindow(SCREENWIDTH + offset, SCREENHEIGHT + (offset * 2), "Scape Invaders");
+    InitAudioDevice();
 
     Font font = LoadFontEx("font/monogram.ttf", 64, 0, 0);
 
@@ -27,6 +28,7 @@ int main() {
     Game game;
 
     while (WindowShouldClose() == false) {
+        UpdateMusicStream(game.music);
         game.HandleInput();
         game.Update();
         BeginDrawing();
@@ -61,4 +63,5 @@ int main() {
     }
 
     CloseWindow();
+    CloseAudioDevice();
 }
