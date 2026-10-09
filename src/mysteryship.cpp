@@ -1,7 +1,7 @@
 #include "mysteryship.hpp"
 
 Mysteryship::Mysteryship() {
-    image = LoadTexture("graphics/mystery.png");
+    image     = LoadTexture("graphics/mystery.png");
     isVisible = false;
 }
 
@@ -26,14 +26,14 @@ void Mysteryship::Draw() {
 
 void Mysteryship::Spawn() {
     position.y = 90;
-    int side = GetRandomValue(0, 1);
+    int side   = GetRandomValue(0, 1);
 
     if (side == 0) {
         position.x = 25;
-        speed = 3;
+        speed      = 3;
     } else {
         position.x = GetScreenWidth() - image.width - 25;
-        speed = -3;
+        speed      = -3;
     }
     isVisible = true;
 }

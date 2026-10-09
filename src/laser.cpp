@@ -2,8 +2,8 @@
 
 Laser::Laser(Vector2 position, int speed) {
     this->position = position;
-    this->speed = speed;
-    isActive = true;
+    this->speed    = speed;
+    isActive       = true;
 }
 
 void Laser::Draw() {

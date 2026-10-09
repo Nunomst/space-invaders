@@ -4,16 +4,16 @@
 
 std::string FormatWithLeadingZeros(int number, int width) {
     std::string numberText = std::to_string(number);
-    int leadingZeros = width - numberText.length();
-    return numberText = std::string(leadingZeros, '0') + numberText;
+    int leadingZeros       = width - numberText.length();
+    return numberText      = std::string(leadingZeros, '0') + numberText;
 }
 
 int main() {
-    Color grey = {29, 29, 29, 255};
+    Color grey   = {29, 29, 29, 255};
     Color yellow = {243, 216, 63, 255};
 
-    const int offset = 50;
-    const int SCREENWIDTH = 750;
+    const int offset       = 50;
+    const int SCREENWIDTH  = 750;
     const int SCREENHEIGHT = 700;
 
     InitWindow(SCREENWIDTH + offset, SCREENHEIGHT + (offset * 2), "Scape Invaders");

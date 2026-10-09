@@ -3,7 +3,7 @@
 #include <iostream>
 
 Game::Game() {
-    music = LoadMusicStream("sounds/music.ogg");
+    music          = LoadMusicStream("sounds/music.ogg");
     explosionSound = LoadSound("sounds/explosion.ogg");
     PlayMusicStream(music);
     InitGame();
@@ -43,7 +43,7 @@ void Game::Update() {
         double currentTime = GetTime();
         if (currentTime - timeLastSpawn > mysteryShipSpawnInterval) {
             mysteryship.Spawn();
-            timeLastSpawn = GetTime();
+            timeLastSpawn            = GetTime();
             mysteryShipSpawnInterval = GetRandomValue(10, 20);
         }
 
@@ -100,7 +100,7 @@ void Game::DeleteInactiveLasers() {
 
 std::vector<Obstacle> Game::CreateObstacles() {
     int obstacleWidth = Obstacle::grid[0].size() * 3;
-    float gap = (GetScreenWidth() - (4 * obstacleWidth)) / 5;
+    float gap         = (GetScreenWidth() - (4 * obstacleWidth)) / 5;
 
     for (int i = 0; i < 4; i++) {
         float offsetX = (i + 1) * gap + i * obstacleWidth;
@@ -111,11 +111,11 @@ std::vector<Obstacle> Game::CreateObstacles() {
 }
 
 std::vector<Alien> Game::CreateAliens() {
-    int NUMBER_OF_ROWS = 5;
+    int NUMBER_OF_ROWS    = 5;
     int NUMBER_OF_COLUMNS = 11;
-    int CELL_SIZE = 55;
-    int X_OFFSET = 75;
-    int Y_OFFSET = 110;
+    int CELL_SIZE         = 55;
+    int X_OFFSET          = 75;
+    int Y_OFFSET          = 110;
 
     std::vector<Alien> aliens;
 
@@ -164,7 +164,7 @@ void Game::AlienShootLaser() {
 
     if (currentTime - timeLastAlienFired >= alienLaserShootInterval && !aliens.empty()) {
         int randomIndex = GetRandomValue(0, aliens.size() - 1);
-        Alien& alien = aliens[randomIndex];
+        Alien& alien    = aliens[randomIndex];
         alienLasers.push_back(Laser({alien.position.x + alien.alienImages[alien.type - 1].width / 2,
                                      alien.position.y + alien.alienImages[alien.type - 1].height},
                                     6));
@@ -191,7 +191,7 @@ void Game::CheckForCollisions() {
                 }
                 CheckForHighScore();
 
-                it = aliens.erase(it);
+                it             = aliens.erase(it);
                 laser.isActive = false;
             } else {
                 it++;
@@ -202,7 +202,7 @@ void Game::CheckForCollisions() {
             auto it = obstacle.blocks.begin();
             while (it != obstacle.blocks.end()) {
                 if (CheckCollisionRecs(it->getRect(), laser.getRect())) {
-                    it = obstacle.blocks.erase(it);
+                    it             = obstacle.blocks.erase(it);
                     laser.isActive = false;
                 } else {
                     it++;
@@ -212,7 +212,7 @@ void Game::CheckForCollisions() {
 
         if (CheckCollisionRecs(mysteryship.getRect(), laser.getRect())) {
             mysteryship.isVisible = false;
-            laser.isActive = false;
+            laser.isActive        = false;
             score += 500;
             CheckForHighScore();
             PlaySound(explosionSound);
@@ -233,7 +233,7 @@ void Game::CheckForCollisions() {
             auto it = obstacle.blocks.begin();
             while (it != obstacle.blocks.end()) {
                 if (CheckCollisionRecs(it->getRect(), laser.getRect())) {
-                    it = obstacle.blocks.erase(it);
+                    it             = obstacle.blocks.erase(it);
                     laser.isActive = false;
                 } else {
                     it++;
@@ -274,16 +274,16 @@ void Game::Reset() {
 }
 
 void Game::InitGame() {
-    obstacles = CreateObstacles();
-    aliens = CreateAliens();
-    aliensDirection = 1;
-    timeLastAlienFired = 0.0;
-    timeLastSpawn = 0.0;
+    obstacles                = CreateObstacles();
+    aliens                   = CreateAliens();
+    aliensDirection          = 1;
+    timeLastAlienFired       = 0.0;
+    timeLastSpawn            = 0.0;
     mysteryShipSpawnInterval = GetRandomValue(10, 20);
-    lives = 3;
-    run = true;
-    score = 0;
-    highscore = LoadHighScoreFromFile();
+    lives                    = 3;
+    run                      = true;
+    score                    = 0;
+    highscore                = LoadHighScoreFromFile();
 }
 
 void Game::CheckForHighScore() {

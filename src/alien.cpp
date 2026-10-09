@@ -3,7 +3,7 @@
 Texture2D Alien::alienImages[3] = {};
 
 Alien::Alien(int type, Vector2 position) {
-    this->type = type;
+    this->type     = type;
     this->position = position;
 
     if (alienImages[type - 1].id == 0) {

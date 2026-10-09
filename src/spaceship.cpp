@@ -1,10 +1,10 @@
 #include "spaceship.hpp"
 
 Spaceship::Spaceship() {
-    image = LoadTexture("graphics/spaceship.png");
-    laserSound = LoadSound("sounds/laser.ogg");
-    position.x = (GetScreenWidth() - image.width) / 2;
-    position.y = GetScreenHeight() - image.height - 100;
+    image        = LoadTexture("graphics/spaceship.png");
+    laserSound   = LoadSound("sounds/laser.ogg");
+    position.x   = (GetScreenWidth() - image.width) / 2;
+    position.y   = GetScreenHeight() - image.height - 100;
     lastFireTime = 0.0;
 }
 
