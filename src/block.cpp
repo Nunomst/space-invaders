@@ -7,10 +7,10 @@ Block::Block(Vector2 position)
 
 void Block::Draw()
 {
-    DrawRectangle(position.x, position.y, 3, 3, RED);
+    DrawRectangle(position.x, position.y, 4, 4, RED);
 }
 
 Rectangle Block::getRect()
 {
-    return {position.x, position.y, 3, 3};
+    return {position.x, position.y, 4, 4};
 }
