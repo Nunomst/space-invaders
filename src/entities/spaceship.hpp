@@ -3,7 +3,8 @@
 #include "raylib.h"
 #include <vector>
 
-class Spaceship {
+class Spaceship
+{
   public:
     Spaceship();
     ~Spaceship();

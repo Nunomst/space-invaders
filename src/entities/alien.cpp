@@ -2,12 +2,15 @@
 
 Texture2D Alien::alienImages[3] = {};
 
-Alien::Alien(int type, Vector2 position) {
+Alien::Alien(int type, Vector2 position)
+{
     this->type     = type;
     this->position = position;
 
-    if (alienImages[type - 1].id == 0) {
-        switch (type) {
+    if (alienImages[type - 1].id == 0)
+    {
+        switch (type)
+        {
         case 1:
             alienImages[0] = LoadTexture("graphics/alien_1.png");
             break;
@@ -24,25 +27,31 @@ Alien::Alien(int type, Vector2 position) {
     }
 }
 
-void Alien::Draw() {
+void Alien::Draw()
+{
     DrawTextureV(alienImages[type - 1], position, WHITE);
 }
 
-void Alien::Update(int direction) {
+void Alien::Update(int direction)
+{
     position.x += direction;
 }
 
-int Alien::GetType() {
+int Alien::GetType()
+{
     return type;
 }
 
-void Alien::UnloadImages() {
-    for (Texture2D& image : alienImages) {
+void Alien::UnloadImages()
+{
+    for (Texture2D& image : alienImages)
+    {
         UnloadTexture(image);
     }
 }
 
-Rectangle Alien::getRect() {
+Rectangle Alien::getRect()
+{
     return {position.x, position.y, float(alienImages[type - 1].width),
             float(alienImages[type - 1].height)};
 }

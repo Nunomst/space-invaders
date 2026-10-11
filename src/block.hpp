@@ -1,7 +1,8 @@
 #pragma once
 #include <raylib.h>
 
-class Block {
+class Block
+{
   public:
     Block(Vector2 position);
     void Draw();

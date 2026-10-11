@@ -1,7 +1,8 @@
 #pragma once
 #include <raylib.h>
 
-class Alien {
+class Alien
+{
   public:
     Alien(int type, Vector2 position);
     void Draw();

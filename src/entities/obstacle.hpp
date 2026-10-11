@@ -2,7 +2,8 @@
 #include "block.hpp"
 #include <vector>
 
-class Obstacle {
+class Obstacle
+{
   public:
     Obstacle(Vector2 position);
     void Draw();

@@ -1,7 +1,8 @@
 #pragma once
 #include <raylib.h>
 
-class Mysteryship {
+class Mysteryship
+{
   public:
     Mysteryship();
     ~Mysteryship();

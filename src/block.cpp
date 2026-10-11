@@ -1,13 +1,16 @@
 #include "block.hpp"
 
-Block::Block(Vector2 position) {
+Block::Block(Vector2 position)
+{
     this->position = position;
 }
 
-void Block::Draw() {
+void Block::Draw()
+{
     DrawRectangle(position.x, position.y, 3, 3, RED);
 }
 
-Rectangle Block::getRect() {
+Rectangle Block::getRect()
+{
     return {position.x, position.y, 3, 3};
 }

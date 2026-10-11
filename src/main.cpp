@@ -2,13 +2,15 @@
 #include <raylib.h>
 #include <string>
 
-std::string FormatWithLeadingZeros(int number, int width) {
+std::string FormatWithLeadingZeros(int number, int width)
+{
     std::string numberText = std::to_string(number);
     int leadingZeros       = width - numberText.length();
     return numberText      = std::string(leadingZeros, '0') + numberText;
 }
 
-int main() {
+int main()
+{
     Color grey   = {29, 29, 29, 255};
     Color yellow = {243, 216, 63, 255};
 
@@ -27,7 +29,8 @@ int main() {
 
     Game game;
 
-    while (WindowShouldClose() == false) {
+    while (WindowShouldClose() == false)
+    {
         UpdateMusicStream(game.music);
         game.HandleInput();
         game.Update();
@@ -37,14 +40,18 @@ int main() {
         DrawRectangleRoundedLinesEx({10, 10, 780, 780}, 0.18f, 20, 2, yellow);
         DrawLineEx({25, 730}, {775, 730}, 3, yellow);
 
-        if (game.run) {
+        if (game.run)
+        {
             DrawTextEx(font, "LEVEL 01", {570, 740}, 34, 2, yellow);
-        } else {
+        }
+        else
+        {
             DrawTextEx(font, "GAME OVER", {570, 740}, 34, 2, yellow);
         }
 
         float x = 50.0;
-        for (int i = 0; i < game.lives; i++) {
+        for (int i = 0; i < game.lives; i++)
+        {
             DrawTextureV(spaceshipImage, {x, 740}, WHITE);
             x += 50;
         }
