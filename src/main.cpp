@@ -16,7 +16,7 @@ int main() {
     const int SCREENWIDTH  = 750;
     const int SCREENHEIGHT = 700;
 
-    InitWindow(SCREENWIDTH + offset, SCREENHEIGHT + (offset * 2), "Scape Invaders");
+    InitWindow(SCREENWIDTH + offset, SCREENHEIGHT + (offset * 2), "Space Invaders");
     InitAudioDevice();
 
     Font font = LoadFontEx("font/monogram.ttf", 64, 0, 0); // Unload this
