@@ -1,4 +1,4 @@
-#include "game.hpp"
+#include "core/game.hpp"
 #include <raylib.h>
 #include <string>
 
@@ -19,9 +19,9 @@ int main() {
     InitWindow(SCREENWIDTH + offset, SCREENHEIGHT + (offset * 2), "Scape Invaders");
     InitAudioDevice();
 
-    Font font = LoadFontEx("font/monogram.ttf", 64, 0, 0);
+    Font font = LoadFontEx("font/monogram.ttf", 64, 0, 0); // Unload this
 
-    Texture2D spaceshipImage = LoadTexture("graphics/spaceship.png");
+    Texture2D spaceshipImage = LoadTexture("graphics/spaceship.png"); // Unload this
 
     SetTargetFPS(60);
 
@@ -62,6 +62,6 @@ int main() {
         EndDrawing();
     }
 
-    CloseWindow();
     CloseAudioDevice();
+    CloseWindow();
 }

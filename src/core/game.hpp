@@ -1,8 +1,8 @@
 #pragma once
-#include "alien.hpp"
-#include "mysteryship.hpp"
-#include "obstacle.hpp"
-#include "spaceship.hpp"
+#include "entities/alien.hpp"
+#include "entities/mysteryship.hpp"
+#include "entities/obstacle.hpp"
+#include "entities/spaceship.hpp"
 #include <vector>
 
 class Game {
