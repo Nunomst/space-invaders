@@ -5,7 +5,8 @@
 #include "entities/spaceship.hpp"
 #include <vector>
 
-class Game {
+class Game
+{
   public:
     Game();
     ~Game();
