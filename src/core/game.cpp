@@ -139,16 +139,23 @@ std::vector<Alien> Game::CreateAliens() {
 }
 
 void Game::MoveAliens() {
+    bool hitEdge = false;
+
     for (auto& alien : aliens) {
         if (alien.position.x + alien.alienImages[alien.type - 1].width > GetScreenWidth() - 25) {
             aliensDirection = -1;
-            MoveDownAliens(4);
+            hitEdge         = true;
         }
         if (alien.position.x < 25) {
             aliensDirection = 1;
-            MoveDownAliens(4);
+            hitEdge         = true;
         }
+    }
+    if (hitEdge) {
+        MoveDownAliens(4);
+    }
 
+    for (auto& alien : aliens) {
         alien.Update(aliensDirection);
     }
 }
