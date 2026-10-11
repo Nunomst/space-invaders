@@ -13,7 +13,7 @@ class Mysteryship
     bool isVisible;
 
   private:
-    Vector2 position;
+    Vector2 position{0.0f, 0.0f};
     Texture2D image;
-    int speed;
+    int speed = 0;
 };
