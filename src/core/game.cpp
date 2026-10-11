@@ -393,8 +393,8 @@ void Game::InitGame()
     obstacles                = CreateObstacles();
     aliens                   = CreateAliens();
     aliensDirection          = 1;
-    timeLastAlienFired       = 0.0;
-    timeLastSpawn            = 0.0;
+    timeLastAlienFired       = GetTime();
+    timeLastSpawn            = GetTime();
     mysteryShipSpawnInterval = GetRandomValue(10, 20);
     lives                    = 3;
     run                      = true;
