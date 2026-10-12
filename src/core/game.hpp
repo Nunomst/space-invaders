@@ -3,6 +3,7 @@
 #include "entities/mysteryship.hpp"
 #include "entities/obstacle.hpp"
 #include "entities/spaceship.hpp"
+#include "util/save.hpp"
 #include <vector>
 
 class Game
@@ -30,9 +31,6 @@ class Game
     void GameOver();
     void Reset();
     void InitGame();
-    void CheckForHighScore();
-    void SaveHighScoreToFile(int highScore);
-    int LoadHighScoreFromFile();
     Spaceship spaceship;
     std::vector<Obstacle> obstacles;
     std::vector<Alien> aliens;
@@ -44,4 +42,5 @@ class Game
     float mysteryShipSpawnInterval;
     float timeLastSpawn;
     Sound explosionSound;
+    Save save;
 };

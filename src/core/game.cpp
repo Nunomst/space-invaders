@@ -1,5 +1,4 @@
 #include "game.hpp"
-#include <fstream>
 #include <iostream>
 
 Game::Game()
@@ -247,19 +246,19 @@ void Game::CheckForCollisions()
 
                     PlaySound(explosionSound);
 
-                    if (it->type == 1)
+                    if (it->type == Alien::ALIEN_ONE)
                     {
                         score += 100;
                     }
-                    else if (it->type == 2)
+                    else if (it->type == Alien::ALIEN_TWO)
                     {
                         score += 200;
                     }
-                    else if (it->type == 3)
+                    else if (it->type == Alien::ALIEN_THREE)
                     {
                         score += 300;
                     }
-                    CheckForHighScore();
+                    save.CheckForHighScore(score);
 
                     it             = aliens.erase(it);
                     laser.isActive = false;
@@ -304,7 +303,7 @@ void Game::CheckForCollisions()
                 mysteryship.isVisible = false;
                 laser.isActive        = false;
                 score += 500;
-                CheckForHighScore();
+                save.CheckForHighScore(score);
                 PlaySound(explosionSound);
             }
         }
@@ -399,44 +398,5 @@ void Game::InitGame()
     lives                    = 3;
     run                      = true;
     score                    = 0;
-    highscore                = LoadHighScoreFromFile();
-}
-
-void Game::CheckForHighScore()
-{
-    if (score > highscore)
-    {
-        highscore = score;
-        SaveHighScoreToFile(highscore);
-    }
-}
-
-void Game::SaveHighScoreToFile(int highScore)
-{
-    std::ofstream highScoreFile("highscore.txt");
-    if (highScoreFile.is_open())
-    {
-        highScoreFile << highScore;
-        highScoreFile.close();
-    }
-    else
-    {
-        std::cerr << "Failed to save highscore to file" << std::endl;
-    }
-}
-
-int Game::LoadHighScoreFromFile()
-{
-    int loadedHighScore = 0;
-    std::ifstream highScoreFile("highscore.txt");
-    if (highScoreFile.is_open())
-    {
-        highScoreFile >> loadedHighScore;
-        highScoreFile.close();
-    }
-    else
-    {
-        std::cerr << "Failed to load highscore from file." << std::endl;
-    }
-    return loadedHighScore;
+    highscore                = save.LoadHighScoreFromFile();
 }
