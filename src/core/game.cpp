@@ -156,18 +156,18 @@ std::vector<Alien> Game::CreateAliens()
     {
         for (int column = 0; column < NUMBER_OF_COLUMNS; column++)
         {
-            int alienType;
+            Alien::AlienType alienType;
             if (row == 0)
             {
-                alienType = 3;
+                alienType = Alien::ALIEN_THREE;
             }
             else if (row == 1 || row == 2)
             {
-                alienType = 2;
+                alienType = Alien::ALIEN_TWO;
             }
             else
             {
-                alienType = 1;
+                alienType = Alien::ALIEN_ONE;
             }
 
             float x = X_OFFSET + column * CELL_SIZE;
