@@ -31,12 +31,10 @@ void Hud::Draw(int score, int highscore, int lives, bool run)
     }
 
     DrawTextEx(font, "SCORE", {50, 15}, fontSize, 2, yellow);
-    std::string scoreText = FormatWithLeadingZeros(score, 5);
-    DrawTextEx(font, scoreText.c_str(), {50, 40}, fontSize, 2, yellow);
+    DrawTextEx(font, FormatWithLeadingZeros(score, 5).c_str(), {50, 40}, fontSize, 2, yellow);
 
     DrawTextEx(font, "HIGH SCORE", {570, 15}, fontSize, 2, yellow);
-    std::string highScoreText = FormatWithLeadingZeros(highscore, 5);
-    DrawTextEx(font, highScoreText.c_str(), {655, 40}, fontSize, 2, yellow);
+    DrawTextEx(font, FormatWithLeadingZeros(highscore, 5).c_str(), {655, 40}, fontSize, 2, yellow);
 }
 
 void Hud::Unload()
