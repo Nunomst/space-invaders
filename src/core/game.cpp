@@ -319,7 +319,7 @@ void Game::CheckForCollisions()
             {
                 lives--;
                 laser.isActive = false;
-                if (lives == 0)
+                if (lives <= 0)
                 {
                     GameOver();
                 }
@@ -421,7 +421,7 @@ void Game::SaveHighScoreToFile(int highScore)
     }
     else
     {
-        std::cerr << "Failder to save highscore to file" << std::endl;
+        std::cerr << "Failed to save highscore to file" << std::endl;
     }
 }
 
