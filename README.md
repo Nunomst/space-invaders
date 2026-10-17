@@ -2,8 +2,6 @@
 
 A retro arcade game built with **C++17** and **raylib**, inspired by the classic Space Invaders. Move your spaceship, dodge enemy fire, and take on a descending alien formation in a pixel-art battlefield.
 
-This learning and portfolio project explores the fundamentals of 2D game development: a real-time game loop, entity-based design, collision detection, audio, and local file persistence.
-
 <p align="center">
   <img src="graphics/Screenshot.png" alt="Space Invaders gameplay showing an alien formation, four destructible bunkers, the player spaceship, and the score display." width="700">
 </p>
@@ -39,38 +37,6 @@ The current version features a single alien formation; automatic wave progressio
 - **Code organization:** gameplay coordination, entities, the HUD, and persistence live in separate modules.
 - **raylib integration:** window creation, keyboard input, sprite rendering, fonts, music, and sound effects.
 
-## Build and run
-
-The included Makefile is configured for **macOS with Homebrew under `/opt/homebrew`** (the usual Apple Silicon installation).
-
-### Requirements
-
-- A C++17-compatible compiler (`clang++` is used by default)
-- `make`
-- raylib installed in the include and library paths specified by the Makefile
-
-With those dependencies available, run these commands from the project root:
-
-```sh
-make
-make run
-```
-
-You can also launch the compiled executable directly:
-
-```sh
-./space-invaders
-```
-
-Run the game from the project root so it can find `graphics/`, `sounds/`, `font/`, and `highscore.txt` through their relative paths.
-
-For other environments, adjust the compiler, include paths, library paths, and platform linker flags in the Makefile. The supplied build configuration targets macOS.
-
-To remove the compiled executable:
-
-```sh
-make clean
-```
 
 ## Project structure
 
