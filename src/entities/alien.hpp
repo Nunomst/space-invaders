@@ -1,8 +1,16 @@
 #pragma once
 #include <raylib.h>
 
-class Alien {
+class Alien
+{
   public:
+    enum AlienType
+    {
+        ALIEN_ONE,
+        ALIEN_TWO,
+        ALIEN_THREE
+    };
+
     Alien(int type, Vector2 position);
     void Draw();
     void Update(int direction);
